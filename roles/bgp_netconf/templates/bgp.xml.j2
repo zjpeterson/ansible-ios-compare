@@ -4,7 +4,7 @@
             <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
                 <id>{{ bgp_global_config.as_number }}</id>
                 <bgp>
-                    <log-neighbor-changes>{{ bgp_global_config.bgp.log_neighbor_changes }}</log-neighbor-changes>
+                    <log-neighbor-changes>{{ bgp_global_config.bgp.log_neighbor_changes | string | lower }}</log-neighbor-changes>
                     <router-id>
                         <ip-id>{{ bgp_global_config.bgp.router_id.address }}</ip-id>
                     </router-id>
