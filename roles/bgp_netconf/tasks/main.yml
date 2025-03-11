@@ -1,0 +1,5 @@
+---
+- name: Config via NETCONF
+  ansible.netcommon.netconf_config:
+    format: xml
+    content: "{{ lookup('template', 'bgp.xml.j2') }}"

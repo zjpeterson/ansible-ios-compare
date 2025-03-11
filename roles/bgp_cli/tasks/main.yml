@@ -1,0 +1,4 @@
+---
+- name: Apply BGP Global config
+  cisco.ios.ios_config:
+    src: bgp.j2

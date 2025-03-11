@@ -1,0 +1,21 @@
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <router>
+            <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
+                <id>{{ bgp_global_config.as_number }}</id>
+                <bgp>
+                    <log-neighbor-changes>{{ bgp_global_config.bgp.log_neighbor_changes }}</log-neighbor-changes>
+                    <router-id>
+                        <ip-id>{{ bgp_global_config.bgp.router_id.address }}</ip-id>
+                    </router-id>
+                </bgp>
+                {% for neighbor in bgp_global_config.neighbors %}
+                <neighbor>
+                    <id>{{ neighbor.neighbor_address }}</id>
+                    <remote-as>{{ neighbor.remote_as }}</remote-as>
+                </neighbor>
+                {% endfor %}
+            </bgp>
+        </router>
+    </native>
+</config>

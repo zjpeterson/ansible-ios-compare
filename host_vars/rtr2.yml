@@ -1,0 +1,10 @@
+---
+bgp_global_config:
+  as_number: 65001
+  bgp:
+    log_neighbor_changes: true
+    router_id:
+      address: 192.168.2.2
+  neighbors:
+    - neighbor_address: 10.200.200.1
+      remote_as: 65000

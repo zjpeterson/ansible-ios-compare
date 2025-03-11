@@ -1,1 +1,5 @@
 # ansible-ios-compare
+This repo uses a BGP configuration to compare the 3 ways to push config to Cisco IOS:
+- CLI
+- Resource Module
+- NETCONF

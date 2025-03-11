@@ -1,0 +1,11 @@
+---
+- name: Configure IOS BGP
+  hosts: rtr1,rtr2
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: Apply BGP Global config
+      cisco.ios.ios_bgp_global:
+        state: merged
+        config: "{{ bgp_global_config }}"

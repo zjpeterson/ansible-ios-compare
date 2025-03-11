@@ -1,0 +1,8 @@
+---
+- name: Configure IOS BGP
+  hosts: rtr1,rtr2
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  roles:
+    - bgp_cli
