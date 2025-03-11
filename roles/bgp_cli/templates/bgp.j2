@@ -1,5 +1,5 @@
 router bgp {{ bgp_global_config.as_number }}
-  bgp router-id {{ bgp_global_config.bgp.router_id.address }}
+ bgp router-id {{ bgp_global_config.bgp.router_id.address }}
 {% if bgp_global_config.bgp.log_neighbor_changes %} bgp log-neighbor-changes{% endif %}
 {% for neighbor in bgp_global_config.neighbors %}
  neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
