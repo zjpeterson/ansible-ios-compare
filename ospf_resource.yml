@@ -1,0 +1,11 @@
+---
+- name: Configure IOS OSPF
+  hosts: rtr1,rtr3
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: Apply OSPFv2 config
+      cisco.ios.ios_ospfv2:
+        state: merged
+        config: "{{ ospfv2_config }}"
