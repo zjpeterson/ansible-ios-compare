@@ -5,6 +5,7 @@
     dest: /tmp/yang
     depth: 1
     recursive: false
+  run_once: true
 
 - name: Run fact gathering to get version
   vars:
@@ -16,7 +17,7 @@
   vars:
     _ver: "{{ ansible_net_version | regex_replace('[^0-9.]', '') | split('.') | map('int') | map('string') | join('') }}"
     _search: /tmp/yang/vendor/cisco/xe/{{ _ver }}/
-    _files: "{{ [_search] | product(ospf_yang_models) | map('join') | list | product(['.yang']) }}"
+    _files: "{{ [_search] | product(ospf_yang_models) | map('join') | list | product(['.yang']) | map('join') }}"
   ansible.yang.configure:
     file: "{{ _files }}"
     search_path: "{{ _search }}"
