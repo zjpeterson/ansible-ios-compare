@@ -1,0 +1,29 @@
+---
+- name: Fetch models
+  ansible.builtin.git:
+    repo: https://github.com/YangModels/yang.git
+    dest: /tmp/yang
+    depth: 1
+    recursive: false
+
+- name: Run fact gathering to get version
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+  cisco.ios.ios_facts:
+    gather_subset: min
+
+- name: Apply configuration
+  vars:
+    _ver: "{{ ansible_net_version | regex_replace('[^0-9.]', '') | split('.') | map('int') | map('string') | join('') }}"
+    _search: /tmp/yang/vendor/cisco/xe/{{ _ver }}/
+    _files: "{{ [_search] | product(ospf_yang_models) | map('join') | list | product(['.yang']) }}"
+  ansible.yang.configure:
+    file: "{{ _files }}"
+    search_path: "{{ _search }}"
+    get_filter: |
+      <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <router>
+          <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf"></router-ospf>
+        </router>
+      </native>
+    config: "{{ lookup('template', 'ospf.json.j2') }}"

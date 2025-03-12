@@ -1,0 +1,11 @@
+{
+    "Cisco-IOS-XE-native:native": {
+        "router": {
+            "Cisco-IOS-XE-ospf:router-ospf": {
+                "ospf": {
+                    "process-id": {{ ospfv2_config.processes | ansible.utils.replace_keys(target=ospf_yang_modify_keys) }}
+                }
+            }
+        }
+    }
+}

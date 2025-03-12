@@ -1,0 +1,9 @@
+---
+ospf_yang_models:
+  - Cisco-IOS-XE-native
+  - Cisco-IOS-XE-ospf
+ospf_yang_modify_keys:
+  - before: process_id
+    after: id
+  - before: router_id
+    after: router-id

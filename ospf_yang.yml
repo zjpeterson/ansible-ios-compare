@@ -1,0 +1,15 @@
+---
+- name: Configure IOS OSPF
+  hosts: rtr1,rtr3
+  gather_facts: false
+  connection: ansible.netcommon.netconf
+
+  pre_tasks:
+    - name: Ensure NETCONF is enabled
+      vars:
+        ansible_connection: ansible.netcommon.network_cli
+      cisco.ios.ios_config:
+        lines: netconf-yang
+
+  roles:
+    - ospf_yang
