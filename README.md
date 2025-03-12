@@ -4,4 +4,4 @@ This repo uses a BGP configuration to compare the 3 ways to push config to Cisco
 - Resource Module
 - NETCONF
 
-The 3 playbooks at the root of this repo all accomplish the same thing.
+Similarly-named playbooks all accomplish the same thing using different methods.
